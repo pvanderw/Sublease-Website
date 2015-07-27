@@ -1,20 +1,22 @@
 <style type="text/css">
+
 /* Carousel base class */
 .carousel {
-	max-height: 600px;
+	max-height: 700px;
 	width: 100%;
-	margin-top: 50px;
-	margin-bottom: 60px;
+	margin: 50px auto;
 }
+
 
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
 	z-index: 10;
 }
 
+
 /* Declare heights because of positioning of img element */
 .carousel .item {
-	height: 500px;
+	height: 400px;
 	width: 100%;
 	background-color: #777;
 }
@@ -23,7 +25,11 @@
 	top: 0;
 	left: 0;
 	min-width: 100%;
-	height: 500px;
+	height: 400px;
+}
+
+.carousel-inner > .item > a > img {
+	width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -41,7 +47,7 @@
 	$(document).ready(function()
 	{
 		$('#myCarousel').carousel({
-			interval: 5000
+			interval: 10000
 		});
 
 		$('#leftButton').click(function()
@@ -102,9 +108,9 @@
 				<img class="first-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="First slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Example headline.</h1>
-						<p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-						<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+						<h1>Welcome to Lease SC</h1>
+						<p>Search for apartment subleases around USC, or create an account to post your own so others can easily contact you about taking over your lease.</p>
+						<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Sign up today</a></p>
 					</div>
 				</div>
 			</div>
@@ -112,9 +118,9 @@
 				<img class="second-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Another example headline.</h1>
-						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-						<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+						<h1>Easily filter subleases to best fit your needs</h1>
+						<p>Search for a sublease by location, price, apartment size, or lease expiration date to quickly find what you are looking for</p>
+						<p><a class="btn btn-lg btn-primary" href="#/subleases" role="button">View Subleases</a></p>
 					</div>
 				</div>
 			</div>
@@ -122,9 +128,9 @@
 				<img class="third-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>One more for good measure.</h1>
-						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-						<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+						<h1>Add your own sublease</h1>
+						<p>Going home for the summer but your lease hasn't ended? By creating an account, you can post information about your apartment so you can easily find someone to take over your lease</p>
+						<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Create Account</a></p>
 					</div>
 				</div>
 			</div>
