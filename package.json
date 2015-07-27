@@ -1,0 +1,10 @@
+{
+	"name": "Subleasing_Website",
+	"version": "0.0.1",
+	"dependencies": 
+	{
+		"express": "latest",
+		"mongoose": "latest",
+		"body-parser": "latest"
+	}
+}
