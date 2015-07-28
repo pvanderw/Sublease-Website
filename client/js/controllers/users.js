@@ -4,6 +4,7 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 	$scope.newUser = {};
 	$scope.userInfo = {};
 
+
 	$scope.getUsers = function()
 	{
 		usersFactory.getUsers(function(data)
@@ -19,26 +20,64 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 		$scope.registration_form.confirm_password.$error.not_matching = $scope.newUser.password !== $scope.newUser.confirm_password;
 	}
 
+	$scope.checkEmail = function(callback)
+	{
+		usersFactory.emailExists($scope.newUser, function(exists)
+		{
+			console.log("Exists:", exists);
+			if (exists === false)
+			{
+				callback(false);
+			}
+			else
+			{
+				callback(true);
+			}
+		});
+	}
+
+	$scope.resetEmail = function()
+	{
+		$scope.registration_form.email.$error.email_used = false;
+	}
+
 	$scope.registerForm = function()
 	{
-		if ($scope.registerForm.$valid) {
-			// Submit as normal
-			$scope.addUser();
-		}
-		else {
-			$scope.registerForm.submitted = true;
-		}
+		$scope.checkEmail(function(taken)
+		{
+			if (taken)
+			{
+				$scope.registration_form.email.$error.email_used = true;
+			}
+			else
+			{
+				$scope.registration_form.email.$error.email_used = false;
+			}
+
+			if ($scope.registration_form.$valid && $scope.registration_form.email.$error.email_used != true) {
+				// Submit as normal
+				console.log("Form has no errors");
+				$scope.addUser();
+			}
+			else {
+				console.log("form errors");
+				$scope.registerForm.submitted = true;
+			}
+		});
+		
 	}
 
 
 	$scope.addUser = function()
 	{
+		console.log("In add user");
 		//add user to the database
 		usersFactory.addUser($scope.newUser, function()
 		{
 			//update list of users
 			$scope.getUsers();
 		});
+		$location.path('/');
 	}
 
 	// $scope.loginUser = function()

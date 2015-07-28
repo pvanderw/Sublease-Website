@@ -26,4 +26,9 @@ module.exports = function(app)
 	{
 		users.usernameExists(req,res);
 	});
+
+	app.post('/check_email', function(req,res)
+	{
+		users.emailExists(req,res);
+	});
 };

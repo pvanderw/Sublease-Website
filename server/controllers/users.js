@@ -77,6 +77,27 @@ module.exports = (function()
 					res.json(true);
 				}
 			});
+		},
+
+		emailExists: function(req,res)
+		{
+			User.findOne({email: req.body.email}, function(err, results)
+			{
+				if (err)
+				{
+					console.log("Error while checking if email exists");
+				}
+				else if (results == null)
+				{
+					console.log("Email does not exist");
+					res.json(false);
+				}
+				else
+				{
+					console.log("Email exists");
+					res.json(true);
+				}
+			});
 		}
 	}
 })();

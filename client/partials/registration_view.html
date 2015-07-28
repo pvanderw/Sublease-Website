@@ -14,7 +14,8 @@
 				</div>
 				<div class="form-group">
 					<label for="email">Email: </label>
-					<input type="email" name="email" class="form-control" ng-model="newUser.email" required>
+					<input type="email" name="email" class="form-control" ng-model="newUser.email" ng-change="resetEmail()" required>
+					<span style="color:red" ng-if="registration_form.email.$error.email_used == true">A user with that email already exists. Please enter a different email.</span>
 					<span style="color:red" ng-show="registration_form.$submitted && registration_form.email.$invalid">
 						<span ng-show="registration_form.email.$error.required">Email is required</span>
 						<span ng-show="registration_form.email.$error.email">Please enter a valid email address</span>

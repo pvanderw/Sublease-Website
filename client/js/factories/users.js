@@ -27,6 +27,7 @@ myApp.factory('usersFactory', function($http)
 
 	factory.addUser = function(info, callback)
 	{
+		console.log("In factory add user");
 		$http.post('/add_user', info).
 			success(function()
 			{
@@ -51,6 +52,20 @@ myApp.factory('usersFactory', function($http)
 			error(function()
 			{
 				console.log("Error occured while checking user");
+			});
+	}
+
+	factory.emailExists = function(info, callback)
+	{
+		$http.post('/check_email', info).
+			success(function(output)
+			{
+				console.log("checked email successfully");
+				callback(output);
+			}).
+			error(function()
+			{
+				console.log("Error occurred while checking email");
 			});
 	}
 
