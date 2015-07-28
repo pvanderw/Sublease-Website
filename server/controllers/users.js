@@ -98,6 +98,27 @@ module.exports = (function()
 					res.json(true);
 				}
 			});
+		},
+
+		validateUser: function(req,res)
+		{
+			User.findOne({email: req.body.email, password: req.body.password}, function(err, results)
+			{
+				if (err)
+				{
+					console.log("Error checking login info in database");
+				}
+				else if (results == null)
+				{
+					console.log("User does not exist");
+					res.json(false);
+				}
+				else
+				{
+					console.log("User exists");
+					res.json(true);
+				}
+			});
 		}
 	}
 })();

@@ -2,6 +2,7 @@
 myApp.factory('sessionFactory', function($http, $window)
 {
 	currentUser = {};
+	loggedIn = false
 	factory = {};
 
 	factory.getCurrentUser = function(callback)
@@ -12,6 +13,12 @@ myApp.factory('sessionFactory', function($http, $window)
 	factory.setCurrentUser = function(info)
 	{
 		currentUser = info;
+		loggedIn = true;
+	}
+
+	factory.isLoggedIn = function(callback)
+	{
+		callback(loggedIn);
 	}
 
 	factory.logout = function()

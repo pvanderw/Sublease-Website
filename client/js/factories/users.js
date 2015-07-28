@@ -69,6 +69,19 @@ myApp.factory('usersFactory', function($http)
 			});
 	}
 
+	factory.validateUser = function(info, callback)
+	{
+		$http.post('/validate', info).
+			success(function(output)
+			{
+				console.log("Checked user login info successfully");
+				callback(output);
+			}).
+			error(function()
+			{
+				console.log("Error occurred while checking login info");
+			});
+	}
 
 	return factory;
 });

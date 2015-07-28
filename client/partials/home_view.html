@@ -47,7 +47,7 @@
 	$(document).ready(function()
 	{
 		$('#myCarousel').carousel({
-			interval: 10000
+			interval: 15000
 		});
 
 		$('#leftButton').click(function()
@@ -63,77 +63,56 @@
 
 </script>
 
-<div ng-include src="'/partials/header.html'"></div>
-
-<div class="row">
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<!-- Indicators -->
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<img class="first-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="First slide">
-				<div class="container">
-					<div class="carousel-caption">
-						<h1>Welcome to Lease SC</h1>
-						<p>Search for apartment subleases around USC, or create an account to post your own so others can easily contact you about taking over your lease.</p>
-						<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Sign up today</a></p>
+<div ng-controller="usersController">
+	<div ng-include src="'/partials/header.html'"></div>
+	<div class="row">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img class="first-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="First slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>Welcome to Lease SC</h1>
+							<p>Search for apartment subleases around USC, or create an account to post your own so others can easily contact you about taking over your lease.</p>
+							<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Sign up today</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="second-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Second slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>Easily filter subleases to best fit your needs</h1>
+							<p>Search for a sublease by location, price, apartment size, or lease expiration date to quickly find what you are looking for</p>
+							<p><a class="btn btn-lg btn-primary" href="#/subleases" role="button">View Subleases</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img class="third-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Third slide">
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>Add your own sublease</h1>
+							<p>Going home for the summer but your lease hasn't ended? By creating an account, you can post information about your apartment so you can easily find someone to take over your lease</p>
+							<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Create Account</a></p>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="item">
-				<img class="second-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Second slide">
-				<div class="container">
-					<div class="carousel-caption">
-						<h1>Easily filter subleases to best fit your needs</h1>
-						<p>Search for a sublease by location, price, apartment size, or lease expiration date to quickly find what you are looking for</p>
-						<p><a class="btn btn-lg btn-primary" href="#/subleases" role="button">View Subleases</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<img class="third-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Third slide">
-				<div class="container">
-					<div class="carousel-caption">
-						<h1>Add your own sublease</h1>
-						<p>Going home for the summer but your lease hasn't ended? By creating an account, you can post information about your apartment so you can easily find someone to take over your lease</p>
-						<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Create Account</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<a class="left carousel-control" id="leftButton" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" id="rightButton" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div><!-- /.carousel -->
-</div>
-
-<!-- <div ng-controller=""> -->
-	<!-- <div class="container"> -->
-		<!-- <div ng-include="header.html"></div> -->
-
-
-
-
-		<!-- <div class="col-md-8">
-			
-			<div class="error" style="color:red"></div>
-			<form>
-				<div class="form-group">
-					<label for="name" class="control-label">Username: </label>
-					<input type="text" name="name" placeholder="username" class="form-control" ng-model="newUser.name">
-				</div>
-				<button type="submit" class="btn btn-primary" ng-click="loginUser()">Login</button>
-				<button type="submit" class="btn btn-primary" ng-click="addUser()">Register</button>
-			</form>
-		</div> -->
+			<a class="left carousel-control" id="leftButton" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" id="rightButton" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div><!-- /.carousel -->
 	</div>
-<!-- </div> -->
+</div>

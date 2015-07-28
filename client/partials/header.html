@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="padding:3px 0px 7px 0px">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -12,20 +12,28 @@
 			</a>
 		</div>
 		<!-- <ul class="nav navbar-nav navbar-right"> -->
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav navbar-collapse collapse">
 			<li><a href="#/subleases">View Subleases</a></li>
 			<li><a href="#/new_sublease">Add a Sublease</a></li>
 		</ul>
-		<div id="navbar" class="navbar-collapse collapse">
-			<form class="navbar-form navbar-right">
-				<div class="form-group">
-					<input type="text" placeholder="Email" class="form-control">
-				</div>
-				<div class="form-group">
-				<input type="password" placeholder="Password" class="form-control">
-				</div>
-				<button type="submit" class="btn btn-success">Sign in</button>
-			</form>
-		</div><!--/.navbar-collapse -->
+		<!-- <div id="navbar" class="nav navbar-nav navbar-right"> -->
+			<div ng-if="!loggedIn">
+				<form name="login_form" class="navbar-form navbar-right" novalidate ng-submit="loginUser(login_form)">
+					<span style="color:red" ng-if="login_form.$submitted && login_form.validUser == false">Email or password is incorrect</span>
+					<div class="form-group">
+						<input type="text" name="email" placeholder="Email" class="form-control" ng-model="user.email">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" placeholder="Password" class="form-control" ng-model="user.password">
+					</div>
+					<button type="submit" class="btn btn-success">Sign in</button>
+				</form>
+			</div>
+			<div ng-if="loggedIn">
+				<ul class="nav navbar-nav navbar-right" style="margin-right:20px;">
+					<li><a href="#/logout" ng-click="logout()">Logout</a></li>
+				</ul>
+			</div>
+		<!-- </div> -->
 	</div>
 </nav>

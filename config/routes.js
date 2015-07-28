@@ -31,4 +31,9 @@ module.exports = function(app)
 	{
 		users.emailExists(req,res);
 	});
+
+	app.post('/validate', function(req,res)
+	{
+		users.validateUser(req,res);
+	});
 };
