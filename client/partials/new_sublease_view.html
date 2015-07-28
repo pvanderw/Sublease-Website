@@ -1,0 +1,85 @@
+
+<!-- google maps API key: AIzaSyDZAD-HO2kEEKHBzQtnHTRraMCTHapZQcQ -->
+
+
+<div ng-include src="'/partials/header.html'"></div>
+
+<div ng-controller="subleasesController">
+	<div class="container" style="margin:60px auto;">
+		<div class="col-md-8">
+			<h1>Add a sublease for others to see</h1>
+			<form name="sublease_form" novalidate ng-submit="subleaseForm()">
+				<div class="form-group">
+					<label for="num_rooms">Number of rooms: </label>
+					<input type="number" name="num_rooms" class="form-control" ng-model="newSublease.num_rooms" min="1" max="10" ng-pattern="/[0-9]/" required>
+					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.num_rooms.$invalid">
+						<span ng-show="sublease_form.num_rooms.$error.required">Number of rooms is required</span>
+						<span ng-show="sublease_form.num_rooms.$error.pattern">Number of rooms must be a number</span>
+						<span ng-show="sublease_form.num_rooms.$error.number">Not a valid number</span>
+						<span ng-show="sublease_form.num_rooms.$error.min">Number of rooms must be at least 1</span>
+						<span ng-show="sublease_form.num_rooms.$error.max">Number of rooms must be 10 or less</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="num_bathrooms">Number of bathrooms: </label>
+					<input type="number" name="num_bathrooms" class="form-control" ng-model="newSublease.num_bathrooms" min="0" max="5" ng-pattern="/[0-9]/" required>
+					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.num_bathrooms.$invalid">
+						<span ng-show="sublease_form.num_bathrooms.$error.required">Number of bathrooms is required</span>
+						<span ng-show="sublease_form.num_bathrooms.$error.pattern">Number of bathrooms must be a number</span>
+						<span ng-show="sublease_form.num_bathrooms.$error.number">Not a valid number</span>
+						<span ng-show="sublease_form.num_bathrooms.$error.min">Number of bathrooms must be at least 0</span>
+						<span ng-show="sublease_form.num_bathrooms.$error.max">Number of bathrooms must be 5 or less</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="address">Address: </label>
+					<input type="text" name="address" class="form-control" ng-model="newSublease.address" ng-minlength="10" ng-maxlength="75" ng-pattern="/^[a-zA-Z0-9 ]+$/" required>
+					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.address.$invalid">
+						<span ng-show="sublease_form.address.$error.required">Address is required</span>
+						<span ng-show="sublease_form.address.$error.pattern">Address must only be letters/numbers</span>
+						<span ng-show="sublease_form.address.$error.minlength">Address must be at least 10 characters in length</span>
+						<span ng-show="sublease_form.address.$error.maxlength">Address can not be more than 75 characters in length</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="price">Price per month</label>
+					<input type="text" name="price" class="form-control" ng-model="newSublease.price" min="0" max="10000" ng-pattern="/[0-9]/" required>
+					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.price.$invalid">
+						<span ng-show="sublease_form.price.$error.required">Price is required</span>
+						<span ng-show="sublease_form.price.$error.pattern">Price must be a number</span>
+						<span ng-show="sublease_form.price.$error.min">Price must be at least 0</span>
+						<span ng-show="sublease_form.price.$error.max">Price cannot be greater than 10,000</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="start_date">Start date available for lease: </label>
+					<input type="date" name="start_date" placeholder="i.e. 7/26/15" class="form-control" ng-model="newSublease.start_date" ng-minlength="6" ng-maxlength="10" ng-pattern="/[0-9/]/" required>
+					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.start_date.$invalid">
+						<span ng-show="sublease_form.start_date.$error.required">Start date is required</span>
+						<span ng-show="sublease_form.start_date.$error.pattern">Start date must follow the pattern mm/dd/yyyy</span>
+						<span ng-show="sublease_form.start_date.$error.minlength">Start date must be at least 6 characters in length</span>
+						<span ng-show="sublease_form.start_date.$error.maxlength">Start date cannot be more than 10 characters in length</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="end_date">Ending date of lease: </label>
+					<input type="date" name="end_date" placeholder="i.e. 7/26/15" class="form-control" ng-model="newSublease.end_date" ng-minlength="6" ng-maxlength="10" ng-pattern="/[0-9/]/" required>
+					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.end_date.$invalid">
+						<span ng-show="sublease_form.end_date.$error.required">End date is required</span>
+						<span ng-show="sublease_form.end_date.$error.pattern">End date must follow the pattern mm/dd/yyyy</span>
+						<span ng-show="sublease_form.end_date.$error.minlength">End date must be at least 6 characters in length</span>
+						<span ng-show="sublease_form.end_date.$error.maxlength">End date cannot be more than 10 characters in length</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="description">Description of apartment: </label>
+					<textarea name="description" rows="5" cols="70" class="form-control" ng-model="newSublease.description" required></textarea>
+					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.description.$invalid">
+						<span ng-show="sublease_form.description.$error.required">Description is required</span>
+					</span>
+				</div>
+				<button type="submit" class="btn btn-primary">Add Sublease</button>
+			</form>
+		</div>
+	</div>
+</div>

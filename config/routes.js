@@ -1,5 +1,6 @@
 
 var users = require("../server/controllers/users.js");
+var subleases = require("../server/controllers/subleases.js");
 
 var bodyParser = require("body-parser");
 
@@ -35,5 +36,10 @@ module.exports = function(app)
 	app.post('/validate', function(req,res)
 	{
 		users.validateUser(req,res);
+	});
+
+	app.get('/subleases', function(req,res)
+	{
+		subleases.show(req,res);
 	});
 };
