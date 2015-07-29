@@ -12,5 +12,19 @@ myApp.factory('subleasesFactory', function($http)
 		});
 	}
 
+	factory.addSublease = function(info, callback)
+	{
+		$http.post('/add_sublease', info).
+			success(function()
+			{
+				console.log("Added sublease successfully");
+				callback();
+			}).
+			error(function()
+			{
+				console.log("Error while adding sublease");
+			});
+	}
+
 	return factory;
 });

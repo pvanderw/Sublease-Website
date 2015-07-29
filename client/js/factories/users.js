@@ -12,7 +12,7 @@ myApp.factory('usersFactory', function($http)
 		});
 	}
 
-	factory.getUser = function(info, callback)
+	factory.getUserByEmail = function(info, callback)
 	{
 			$http.post('/user', info).
 			success(function(output)

@@ -28,29 +28,30 @@
 			$routeProvider
 			.when('/',
 			{
-				templateUrl: 'partials/home_view.html',
-				controller: 'usersController'
+				templateUrl: 'partials/home_view.html'
+				// controller: 'usersController'
 			})
 			.when('/register',
 			{
-				templateUrl: 'partials/registration_view.html',
-				controller: 'usersController'
+				templateUrl: 'partials/registration_view.html'
+				// controller: 'usersController'
 			})
 			.when('/subleases',
 			{
-				// templateUrl: 'partials/sublease_view.html'
+				templateUrl: 'partials/sublease_view.html'
 				// controller: 'subleasesController'
 			})
 			.when('/new_sublease',
 			{
-				templateUrl: 'partials/new_sublease_view.html',
-				controller: 'subleasesController'
+				templateUrl: 'partials/new_sublease_view.html'
+				// controller: 'subleasesController'
 			});
 			
 		});	
 	</script>
 	<script type="text/javascript" src="/js/controllers/users.js"></script>
 	<script type="text/javascript" src="/js/controllers/subleases.js"></script>
+	<script type="text/javascript" src="/js/controllers/header.js"></script>
 	<script type="text/javascript" src="/js/factories/users.js"></script>
 	<script type="text/javascript" src="/js/factories/session.js"></script>
 	<script type="text/javascript" src="/js/factories/subleases.js"></script>

@@ -20,9 +20,9 @@ module.exports = (function()
 			});
 		},
 
-		getUser: function(req,res)
+		getUserByEmail: function(req,res)
 		{
-			User.findOne({name: req.body.name}, function(err, results)
+			User.findOne({email: req.body.email}, function(err, results)
 			{
 				if (err)
 				{

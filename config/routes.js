@@ -15,7 +15,7 @@ module.exports = function(app)
 
 	app.post('/user', function(req,res)
 	{
-		users.getUser(req,res);
+		users.getUserByEmail(req,res);
 	});
 
 	app.post('/add_user', function(req,res)
@@ -41,5 +41,10 @@ module.exports = function(app)
 	app.get('/subleases', function(req,res)
 	{
 		subleases.show(req,res);
+	});
+
+	app.post('/add_sublease', function(req,res)
+	{
+		subleases.addSublease(req,res);
 	});
 };

@@ -100,7 +100,10 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 			if (isValid)
 			{
 				form.validUser = true;
-				sessionFactory.setCurrentUser({email: $scope.user.email});
+				usersFactory.getUserByEmail({email: $scope.user.email}, function(userResult)
+				{
+					sessionFactory.setCurrentUser(userResult);
+				});
 				$scope.loggedIn = true;
 				$location.path('/');
 
