@@ -45,13 +45,16 @@
 			{
 				templateUrl: 'partials/new_sublease_view.html'
 				// controller: 'subleasesController'
+			})
+			.when('/users/:id',
+			{
+				templateUrl: 'partials/user_view.html'
 			});
 			
 		});	
 	</script>
 	<script type="text/javascript" src="/js/controllers/users.js"></script>
 	<script type="text/javascript" src="/js/controllers/subleases.js"></script>
-	<script type="text/javascript" src="/js/controllers/header.js"></script>
 	<script type="text/javascript" src="/js/factories/users.js"></script>
 	<script type="text/javascript" src="/js/factories/session.js"></script>
 	<script type="text/javascript" src="/js/factories/subleases.js"></script>

@@ -20,6 +20,22 @@ module.exports = (function()
 			});
 		},
 
+		showById: function(req, res)
+		{
+			User.findOne({_id: req.params.id}, function(err, result)
+			{
+				if (err)
+				{
+					console.log("Error occurred while trying to get user by Id");
+				}
+				else
+				{
+					console.log("Successfully retrieved user by Id");
+					res.json(result);
+				}
+			});
+		},
+
 		getUserByEmail: function(req,res)
 		{
 			User.findOne({email: req.body.email}, function(err, results)

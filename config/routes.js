@@ -18,6 +18,11 @@ module.exports = function(app)
 		users.getUserByEmail(req,res);
 	});
 
+	app.get('/users/:id', function(req,res)
+	{
+		users.showById(req,res);
+	});
+
 	app.post('/add_user', function(req,res)
 	{
 		users.addUser(req,res);

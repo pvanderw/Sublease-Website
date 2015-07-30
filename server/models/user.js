@@ -4,7 +4,7 @@ var UserSchema = new mongoose.Schema(
 {
 	name: String,
 	email: String,
-	phone: Number,
+	phone: String,
 	password: String,
 	_subleases: [{type: Schema.Types.ObjectId, ref: 'Sublease'}],
 	created_at: {type: Date, default: Date.now},

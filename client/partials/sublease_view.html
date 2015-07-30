@@ -18,6 +18,7 @@
 					<div class="form-group">
 						<label for="num_rooms">Number of Rooms: </label>
 						<select name="num_rooms" class="form-control" ng-model="filter.num_rooms">
+							<option></option>
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -33,6 +34,7 @@
 					<div class="form-group">
 						<label for="num_bathrooms">Number of Bathrooms: </label>
 						<select name="num_bathrooms" class="form-control" ng-model="filter.num_bathrooms">
+							<option></option>
 							<option>0</option>
 							<option>1</option>
 							<option>2</option>
@@ -44,6 +46,7 @@
 					<div class="form-group">
 						<label for="max_price">Max Price: </label>
 						<select name="max_price" class="form-control" ng-model="filter.max_price">
+							<option></option>
 							<option value="400">$400</option>
 							<option value="500">$500</option>
 							<option value="600">$600</option>
@@ -70,12 +73,12 @@
 							<option value="10000">$10,0000</option>
 						</select>
 					</div>
-					<input type="text" ng-model="filter_subleases" placeholder="search" class="pull-right">
+					<input type="text" ng-model="search_filter" placeholder="search" class="pull-right">
 				</form>
 			</div>
 		</div><br>
 		<div class="col-md-8 panel panel-default">
-			<div ng-repeat="sublease in subleases | filter: filter_subleases | orderBy: '-price'">
+			<div ng-repeat="sublease in subleases | filter: search_filter | filter: filterSubleases | orderBy: '-price'">
 				<p><b><span ng-bind="sublease.num_rooms + ' bedroom ' + sublease.num_bathrooms + ' bath'"></span></b></p>
 				<ul>
 					<li><span ng-bind="'Price: $' + sublease.price"></span></li>

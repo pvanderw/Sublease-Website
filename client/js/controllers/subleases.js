@@ -35,6 +35,11 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 			});
 			$location.path('/');
 		}
+	}
+
+	$scope.filterSubleases = function(sublease)
+	{
+		return ((sublease.price <= $scope.filter.max_price || ($scope.filter.max_price == null || $scope.filter.max_price == "")) && (sublease.num_rooms == $scope.filter.num_rooms || ($scope.filter.num_rooms == null || $scope.filter.num_rooms == "")) && (sublease.num_bathrooms == $scope.filter.num_bathrooms || ($scope.filter.num_bathrooms == null || $scope.filter.num_bathrooms == "")));
 	}	
 
 

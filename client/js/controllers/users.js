@@ -14,7 +14,15 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 		});
 	}
 
-	$scope.getUsers();
+	//show user info by ID
+	if ($location.path().indexOf("/users/") > -1)
+	{
+		usersFactory.getUserById($routeParams.id, function(data)
+		{
+			$scope.userInfo = data;
+		});
+	}
+
 
 	//checks if password and confirm password are equal
 	$scope.checkPassword = function()
@@ -119,7 +127,7 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 	{
 		sessionFactory.isLoggedIn(function(loggedIn)
 		{
-			console.log("Logged In: ", loggedIn);
+			// console.log("Logged In: ", loggedIn);
 			$scope.loggedIn = loggedIn
 		});
 	}

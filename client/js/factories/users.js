@@ -12,6 +12,19 @@ myApp.factory('usersFactory', function($http)
 		});
 	}
 
+	factory.getUserById = function(userId, callback)
+	{
+		$http.get('/users/' + userId).
+			success(function(output)
+			{
+				callback(output);
+			}).
+			error(function()
+			{
+				console.log("Error while retrieving user by Id");
+			});
+	}
+
 	factory.getUserByEmail = function(info, callback)
 	{
 			$http.post('/user', info).

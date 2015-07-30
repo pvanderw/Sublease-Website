@@ -22,12 +22,12 @@
 				</div>
 				<div class="form-group">
 					<label for="phone">Phone Number: </label>
-					<input type="text" name="phone" class="form-control" ng-model="newUser.phone" ng-minlength="7" ng-maxlength="10" ng-pattern="/[0-9]/" required>
+					<input type="text" name="phone" placeholder="i.e. (213) 365-4821" class="form-control" ng-model="newUser.phone" ng-minlength="7" ng-maxlength="15" ng-pattern="/^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/" required>
 					<span style="color:red" ng-show="registration_form.$submitted && registration_form.phone.$invalid">
 						<span ng-show="registration_form.phone.$error.required">Phone Number is required</span>
-						<span ng-show="registration_form.phone.$error.pattern">Phone Number must be all numbers</span>
+						<span ng-show="registration_form.phone.$error.pattern">Phone Number must be in the correct format</span>
 						<span ng-show="registration_form.phone.$error.minlength">Phone Number must be at least 7 numbers</span>
-						<span ng-show="registration_form.phone.$error.maxlength">Phone Number must be less than 11 numbers</span>
+						<span ng-show="registration_form.phone.$error.maxlength">Phone Number must be less than 15 characters</span>
 					</span>
 				</div>
 				<div class="form-group">
