@@ -65,7 +65,7 @@
 			<div class="col-md-12">
 				<form name="filter_form" class="form-inline">
 					<div class="form-group">
-						<label for="num_rooms">Number of Rooms: </label>
+						<label for="num_rooms">Number of Bedrooms: </label>
 						<select name="num_rooms" class="form-control" ng-model="filter.num_rooms" ng-change="deleteMarkers()">
 							<option></option>
 							<option>1</option>
@@ -122,31 +122,34 @@
 							<option value="10000">$10,0000</option>
 						</select>
 					</div>
-					<input type="text" ng-model="search_filter" placeholder="search" class="pull-right">
+					<input type="text" ng-model="search_filter" placeholder="search" class="form-control pull-right">
 				</form>
 			</div>
 		</div><br>
 		
-		<!-- Google Maps -->
-		<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-		<div id="map-canvas"></div>
-		<!-- <div ng-if="!alreadCreatedMap">{{createMap()}}</div> -->
-		<div ng-init="createMap()"></div>
-
-		<div class="col-md-12 panel panel-default">
-			<div data-ng-repeat="sublease in filteredSubleases = (subleases | filter: search_filter | filter: filterSubleases | orderBy: 'price')">
-				<h3><p><b><span ng-bind="sublease.num_rooms + ' bedroom ' + sublease.num_bathrooms + ' bath'"></span></b></p></h3>
-				<h4>
-					<ul>
-						<li><span ng-bind="'Price: $' + sublease.price"></span></li>
-						<li><span ng-bind="'Address: ' + sublease.address"></span></li>
-						<li>Available Starting: <span ng-bind="sublease.start_date | date:'MM/dd/yyyy'"></span></li>
-						<li>Sublease Ending: <span ng-bind="sublease.end_date | date:'MM/dd/yyyy'"></span></li>
-						<li><span ng-bind="'Description: ' + sublease.description"></span></li>
-						<li><a href="#/users/{{sublease._user._id}}">Click for contact information</a></li>
-					</ul>
-				</h4>
-				<div><span ng-bind="updateMarkers(filteredSubleases)"></span></div>
+		<dic class="row">
+			<div class="col-md-6 panel panel-default">
+				<div data-ng-repeat="sublease in filteredSubleases = (subleases | filter: search_filter | filter: filterSubleases | orderBy: 'price')">
+					<h3><p><b><span ng-bind="sublease.num_rooms + ' bedroom ' + sublease.num_bathrooms + ' bath'"></span></b></p></h3>
+					<h4>
+						<ul>
+							<li><span ng-bind="'Price: $' + sublease.price"></span></li>
+							<li><span ng-bind="'Address: ' + sublease.address"></span></li>
+							<li>Available Starting: <span ng-bind="sublease.start_date | date:'MM/dd/yyyy'"></span></li>
+							<li>Sublease Ending: <span ng-bind="sublease.end_date | date:'MM/dd/yyyy'"></span></li>
+							<li><span ng-bind="'Description: ' + sublease.description"></span></li>
+							<li><a href="#/users/{{sublease._user._id}}">Click for contact information</a></li>
+						</ul>
+					</h4>
+					<div><span ng-bind="updateMarkers(filteredSubleases)"></span></div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<!-- Google Maps -->
+				<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+				<div id="map-canvas"></div>
+				<!-- <div ng-if="!alreadCreatedMap">{{createMap()}}</div> -->
+				<div ng-init="createMap()"></div>
 			</div>
 		</div>
 	</div>

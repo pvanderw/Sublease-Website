@@ -7,6 +7,7 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 	$scope.alreadyCreatedMap = false;
 	$scope.markers = [];
 	$scope.markersDeleted = false;
+	$scope.markerCounter = 0;
 
 	console.log("SUBLEASE CONTROLLER");
 
@@ -16,14 +17,12 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 		subleasesFactory.getSubleases(function(data)
 		{
 			$scope.subleases = data;
-			// console.log("Subleases: ", $scope.subleases);
 		});
 	}
 
 	//get current logged in user
 	sessionFactory.getCurrentUser(function(user)
 	{
-		// console.log("Current User: ", user);
 		$scope.currentUser = user;
 	});
 
@@ -47,13 +46,79 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 		return ((sublease.price <= $scope.filter.max_price || ($scope.filter.max_price == null || $scope.filter.max_price == "")) && (sublease.num_rooms == $scope.filter.num_rooms || ($scope.filter.num_rooms == null || $scope.filter.num_rooms == "")) && (sublease.num_bathrooms == $scope.filter.num_bathrooms || ($scope.filter.num_bathrooms == null || $scope.filter.num_bathrooms == "")));
 	}	
 
+	$scope.addInfoBox = function(info, callback)
+	{
+		callback(info);
+	}
+
+	//adds markers to the google map
+	$scope.addMarkers = function(subleases)
+	{
+		for (var i=0; i < subleases.length; i++)
+		{
+			var address = subleases[i].address;
+			var num_rooms = subleases[i].num_rooms;
+			var num_bathrooms = subleases[i].num_bathrooms;
+			var price = subleases[i].price;
+			var start_date = subleases[i].start_date;
+			var end_date = subleases[i].end_date;
+			var description = subleases[i].description;
+			var user_id = subleases[i]._user._id;
+
+			var info = {'address':address, 'num_rooms':num_rooms, 'num_bathrooms':num_bathrooms, 'price':price, 'start_date':start_date, 'end_date':end_date, 'description':description, 'user_id':user_id};
+
+			$scope.addInfoBox(info, function(info)
+			{
+				$scope.geocoder.geocode( { 'address': info.address}, function(results, status)
+				{
+					if (status == google.maps.GeocoderStatus.OK)
+					{
+						var marker = new google.maps.Marker({
+							map: $scope.map,
+							position: results[0].geometry.location,
+							title: 'Sublease'
+						});
+						
+						//map.setCenter(results[0].geometry.location);
+						var contentString = '<div id="content">'+
+												'<div id="siteNotice">'+
+												'</div>'+
+												'<h1 id="firstHeading" class="firstHeading">' + info.num_rooms + ' bedroom ' + info.num_bathrooms + ' bath</h1>'+
+												'<div id="bodyContent">'+
+													'<ul><li>Price: $' + info.price + '</li>'+
+													'<li>Address: ' + info.address + '</li>'+
+													'<li>Available Starting: ' + info.start_date + '</li>'+
+													'<li>Sublease Ending: ' + info.end_date + '</li>'+
+													'<li>Description: ' + info.description + '</li>'+
+													'<li><a href="#/users/' + info.user_id + '">Click for contact information</a></li>'+
+													'</ul>'+
+												'</div>'+
+											'</div>';
+						var infowindow = new google.maps.InfoWindow({
+							content: contentString
+						});
+
+						google.maps.event.addListener(marker, 'click', function() {
+							infowindow.open($scope.map,marker);
+						});
+
+						$scope.markers.push(marker);
+					} 
+					else {
+						//alert('Geocode was not successful for the following reason: ' + status);
+						console.log("Geocode was not successful for the following reason: " + status);
+					}
+				});
+			});			
+		}
+	}
+
+	//instantiates the google map
 	$scope.createMap = function()
 	{
 		subleasesFactory.getSubleases(function(data)
 		{
 			$scope.subleases = data;
-			// console.log("Subleases: ", $scope.subleases);
-			console.log("In createMap function");
 			if ($scope.alreadyCreatedMap == false)
 			{
 				var myLatlng = new google.maps.LatLng(34.0205, -118.2856);
@@ -66,27 +131,7 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 				$scope.geocoder = new google.maps.Geocoder();
 			}
 
-			console.log("Subleases length: ", $scope.subleases.length);
-			for (var i=0; i < $scope.subleases.length; i++)
-			{
-				var address = $scope.subleases[i].address;
-				$scope.geocoder.geocode( { 'address': address}, function(results, status)
-				{
-					if (status == google.maps.GeocoderStatus.OK)
-					{
-						//map.setCenter(results[0].geometry.location);
-						var marker = new google.maps.Marker({
-							map: $scope.map,
-							position: results[0].geometry.location
-						});
-						$scope.markers.push(marker);
-					} 
-					else {
-						//alert('Geocode was not successful for the following reason: ' + status);
-						console.log("Geocode was not successful for the following reason: " + status);
-					}
-				});
-			}
+			$scope.addMarkers($scope.subleases);
 
 			if ($scope.alreadyCreatedMap == false)
 			{
@@ -180,27 +225,7 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 	{
 		if ($scope.alreadyCreatedMap && $scope.markersDeleted == true)
 		{
-			for (var i=0; i<subleases.length; i++)
-			{
-				console.log("Updating Markers");
-				var address = subleases[i].address;
-				$scope.geocoder.geocode( { 'address': address}, function(results, status)
-				{
-					if (status == google.maps.GeocoderStatus.OK)
-					{
-						//map.setCenter(results[0].geometry.location);
-						var marker = new google.maps.Marker({
-							map: $scope.map,
-							position: results[0].geometry.location
-						});
-						$scope.markers.push(marker);
-					} 
-					else {
-						//alert('Geocode was not successful for the following reason: ' + status);
-						console.log("Geocode was not successful for the following reason: " + status);
-					}
-				});
-			}
+			$scope.addMarkers(subleases);
 			$scope.markersDeleted = false;
 		}
 	}

@@ -83,8 +83,7 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 	//add user info to database, return to home page
 	$scope.addUser = function()
 	{
-		console.log("In add user");
-		//add user to the database
+		//add user to database
 		usersFactory.addUser($scope.newUser, function()
 		{
 			//update list of users
@@ -127,7 +126,6 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 	{
 		sessionFactory.isLoggedIn(function(loggedIn)
 		{
-			// console.log("Logged In: ", loggedIn);
 			$scope.loggedIn = loggedIn
 		});
 	}

@@ -1,118 +1,90 @@
-<style type="text/css">
-
-/* Carousel base class */
-.carousel {
-	max-height: 700px;
-	width: 100%;
-	margin: 50px auto;
-}
-
-
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-	z-index: 10;
-}
-
-
-/* Declare heights because of positioning of img element */
-.carousel .item {
-	height: 400px;
-	width: 100%;
-	background-color: #777;
-}
-.carousel-inner > .item > img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	min-width: 100%;
-	height: 400px;
-}
-
-.carousel-inner > .item > a > img {
-	width: 100%;
-}
-
-@media (min-width: 768px) {
-	/* Bump up size of carousel content */
-	.carousel-caption p {
-		margin-bottom: 20px;
-		font-size: 21px;
-		line-height: 1.4;
-	}
-}
-
-</style>
-
-<script type="text/javascript">
-	$(document).ready(function()
-	{
-		$('#myCarousel').carousel({
-			interval: 15000
-		});
-
-		$('#leftButton').click(function()
-		{
-			$('#myCarousel').carousel('prev');
-		});
-
-		$('#rightButton').click(function()
-		{
-			$('#myCarousel').carousel('next');
-		});
-	});
-
-</script>
 
 <div ng-controller="usersController">
 	<div ng-include src="'/partials/header.html'"></div>
-	<div class="row">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="first-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="First slide">
-					<div class="container">
-						<div class="carousel-caption">
-							<h1>Welcome to Lease SC</h1>
-							<p>Search for apartment subleases around USC, or create an account to post your own so others can easily contact you about taking over your lease.</p>
-							<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Sign up today</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="second-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Second slide">
-					<div class="container">
-						<div class="carousel-caption">
-							<h1>Easily filter subleases to best fit your needs</h1>
-							<p>Search for a sublease by location, price, apartment size, or lease expiration date to quickly find what you are looking for</p>
-							<p><a class="btn btn-lg btn-primary" href="#/subleases" role="button">View Subleases</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img class="third-slide" src="http://www.galleriesss.com/wp-content/uploads/2015/01/Aka-background-photo-by-katanakatsuki-photobucket.png" alt="Third slide">
-					<div class="container">
-						<div class="carousel-caption">
-							<h1>Add your own sublease</h1>
-							<p>Going home for the summer but your lease hasn't ended? By creating an account, you can post information about your apartment so you can easily find someone to take over your lease</p>
-							<p><a class="btn btn-lg btn-primary" href="#/register" role="button">Create Account</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<a class="left carousel-control" id="leftButton" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" id="rightButton" role="button" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div><!-- /.carousel -->
-	</div>
+	<!-- <div class="container-fluid"> -->
+		
+	<div class="intro-header">
+        <div class="container"> <!-- style="margin-left:0px; margin-right:0px;"> -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>LeaseSC</h1>
+                        <h3>Find apartments around USC</h3>
+                        <hr class="intro-divider">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.intro-header -->
+
+	<!-- Page Content -->
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Welcome to Lease SC</h2>
+                    <p class="lead">Search for apartment subleases around USC, or create an account to post your own so others can easily contact you about taking over your lease.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#/register" role="button">Sign up today</a></p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                	<img class="img-responsive" src="http://viterbiadmission.usc.edu/wp-content/uploads/2014/04/USC-Campus.jpg" alt="">
+                    <!-- <img class="img-responsive" src="http://www.usc.edu/dept/obp/Small%20Use%20Shield_GoldOnCard.jpg" alt=""> -->
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Easily filter subleases to best fit your needs</h2>
+                    <p class="lead">Search for a sublease by location, price, apartment size, or lease expiration date to quickly find what you are looking for</p>
+                    <p><a class="btn btn-lg btn-primary" href="#/subleases" role="button">View Subleases</a></p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="http://www.housesurfing.com/content/images/thumbs/0000520.jpeg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Add your own sublease</h2>
+                    <p class="lead">Going home for the summer but your lease hasn't ended? By creating an account, you can post information about your apartment so you can easily find someone to take over your lease</p>
+                    <p><a class="btn btn-lg btn-primary" href="#/register" role="button">Create Account</a></p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="http://www.thelorenzo.com/gridmedia/images/ss_fountain01.jpg" alt="" style="margin-top:30px">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
 </div>

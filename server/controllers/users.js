@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var User = mongoose.model("User");
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = (function()
 {
@@ -59,19 +60,21 @@ module.exports = (function()
 
 		addUser: function(req, res)
 		{
-
-			new_user = new User({name: req.body.name, email: req.body.email, phone: req.body.phone, password: req.body.password});
-			new_user.save(function(err)
+			bcrypt.hash(req.body.password, null, null, function(err, hash)
 			{
-				if (err)
+				new_user = new User({name: req.body.name, email: req.body.email, phone: req.body.phone, password: hash});
+				new_user.save(function(err)
 				{
-					console.log("Error occured while trying to add the user to the database");
-				}
-				else
-				{
-					console.log("User was successfully added to the database");
-				}
-			});
+					if (err)
+					{
+						console.log("Error occured while trying to add the user to the database");
+					}
+					else
+					{
+						console.log("User was successfully added to the database");
+					}
+				});
+			});			
 		},
 
 		usernameExists: function(req, res)
@@ -117,8 +120,8 @@ module.exports = (function()
 		},
 
 		validateUser: function(req,res)
-		{
-			User.findOne({email: req.body.email, password: req.body.password}, function(err, results)
+		{ 	
+			User.findOne({email: req.body.email}, function(err, results)
 			{
 				if (err)
 				{
@@ -132,7 +135,23 @@ module.exports = (function()
 				else
 				{
 					console.log("User exists");
-					res.json(true);
+					bcrypt.compare(req.body.password, results.password, function(err, match)
+					{
+						if (err)
+						{
+							console.log("Error checking password using bcrypt");
+						}
+						else if (match)
+						{
+							console.log("password matches");
+							res.json(true);
+						}
+						else
+						{
+							console.log("password does not match");
+							res.json(false);
+						}
+					});
 				}
 			});
 		}
