@@ -68,10 +68,12 @@ module.exports = (function()
 					if (err)
 					{
 						console.log("Error occured while trying to add the user to the database");
+						res.json(false);
 					}
 					else
 					{
 						console.log("User was successfully added to the database");
+						res.json(new_user);
 					}
 				});
 			});			

@@ -84,12 +84,13 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 	$scope.addUser = function()
 	{
 		//add user to database
-		usersFactory.addUser($scope.newUser, function()
+		usersFactory.addUser($scope.newUser, function(user)
 		{
 			//update list of users
 			$scope.getUsers();
+			sessionFactory.setCurrentUser(user)
+			$location.path('/');
 		});
-		$location.path('/');
 	}
 
 	$scope.validateUserLoginInfo = function(callback)

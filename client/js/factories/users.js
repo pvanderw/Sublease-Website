@@ -42,11 +42,11 @@ myApp.factory('usersFactory', function($http)
 	{
 		console.log("In factory add user");
 		$http.post('/add_user', info).
-			success(function()
+			success(function(output)
 			{
 				console.log("Successfully added new user");
 				//run callback to update list of users
-				callback();
+				callback(output);
 			}).
 			error(function()
 			{
