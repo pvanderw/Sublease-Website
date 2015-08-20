@@ -1,5 +1,5 @@
 
-myApp.controller('subleasesController', function($scope, $location, subleasesFactory, sessionFactory)
+myApp.controller('subleasesController', function($scope, $location, $filter, subleasesFactory, sessionFactory)
 {
 	$scope.subleases = [];
 	$scope.filter = {};
@@ -8,8 +8,6 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 	$scope.markers = [];
 	$scope.markersDeleted = false;
 	$scope.markerCounter = 0;
-
-	console.log("SUBLEASE CONTROLLER");
 
 	//retrieves list of sublease data
 	$scope.getSubleases = function()
@@ -87,8 +85,8 @@ myApp.controller('subleasesController', function($scope, $location, subleasesFac
 												'<div id="bodyContent">'+
 													'<ul><li>Price: $' + info.price + '</li>'+
 													'<li>Address: ' + info.address + '</li>'+
-													'<li>Available Starting: ' + info.start_date + '</li>'+
-													'<li>Sublease Ending: ' + info.end_date + '</li>'+
+													'<li>Available Starting: ' + $filter('date')(info.start_date, 'MM/dd/yyyy', 'PT') + '</li>'+
+													'<li>Sublease Ending: ' + $filter('date')(info.end_date, 'MM/dd/yyyy', 'PT') + '</li>'+
 													'<li>Description: ' + info.description + '</li>'+
 													'<li><a href="#/users/' + info.user_id + '">Click for contact information</a></li>'+
 													'</ul>'+
