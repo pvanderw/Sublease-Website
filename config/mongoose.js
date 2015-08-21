@@ -6,7 +6,7 @@ var fs = require('fs');
 // connect to the database
 var config = require('./config')[env];
 
-car connect = function()
+var connect = function()
 {
 	var options = { server: { socketOptions: { keepAlive: 1 } } }
 	mongoose.connect(config.db, options);
