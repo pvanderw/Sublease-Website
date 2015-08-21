@@ -16,9 +16,9 @@ require('./config/routes.js')(app);
 // });
 
 var port = process.env.PORT || 8000;
+var server = require('http').createServer(app).listen(port);
 
-app.set('port', port);
-var server = app.listen(app.get('port'), function(){
-	console.log("Express server listening on port " + app.get('port'));
-});
+//  app.listen(app.get('port'), function(){
+// 	console.log("Express server listening on port " + app.get('port'));
+// });
 
