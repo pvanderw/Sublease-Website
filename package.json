@@ -1,10 +1,10 @@
 {
-	"name": "Subleasing_Website",
-	"version": "0.0.1",
-	"dependencies": 
-	{
-		"express": "latest",
-		"mongoose": "latest",
-		"body-parser": "latest"
-	}
+  "name": "Subleasing_Website",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "latest",
+    "mongodb-uri": "^0.9.7",
+    "mongoose": "latest"
+  }
 }
