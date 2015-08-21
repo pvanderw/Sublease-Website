@@ -11,11 +11,6 @@ app.use(bodyParser.json());
 require('./config/mongoose.js');
 var routes = require('./config/routes.js')(app);
 
-// app.configure('development', function()
-// {
-// 	app.use(express.errorHandler());
-// });
-
 // app.listen(6789, function()
 // {
 // 	console.log('Listening on port 6789');

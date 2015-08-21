@@ -15,7 +15,7 @@ var notifier = {
 
 module.exports = {
     development: {
-        db:  'mongodb://admin:password@ds035603.mongolab.com:35603/heroku_j9hdq1z0',
+        db:  'mongodb://heroku_j9hdq1z0:clugksl04m74ka0b8m57dvbo7i@ds035603.mongolab.com:35603/heroku_j9hdq1z0',
         root: rootPath,
         notifier: notifier,
         app: {
@@ -23,7 +23,7 @@ module.exports = {
         }
     },
     test: {
-        db: 'mongodb://admin:password@ds035603.mongolab.com:35603/heroku_j9hdq1z0',
+        db: 'mongodb://heroku_j9hdq1z0:clugksl04m74ka0b8m57dvbo7i@ds035603.mongolab.com:35603/heroku_j9hdq1z0',
         root: rootPath,
         notifier: notifier,
         app: {
