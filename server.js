@@ -15,8 +15,9 @@ require('./config/routes.js')(app);
 // 	console.log('Listening on port 6789');
 // });
 
+var port = process.env.PORT || 8000;
 
-app.set('port', process.env.PORT || 8000);
+app.set('port', port);
 var server = app.listen(app.get('port'), function(){
 	console.log("Express server listening on port " + app.get('port'));
 });
