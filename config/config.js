@@ -15,19 +15,19 @@ var notifier = {
 
 module.exports = {
     development: {
-        db:  'mongodb://admin:password@ds040948.mongolab.com:40948/sublease-website',
+        db:  'mongodb://admin:password@ds035603.mongolab.com:35603/heroku_j9hdq1z0',
         root: rootPath,
         notifier: notifier,
         app: {
-            name: 'sublease-website'
+            name: 'heroku_j9hdq1z0'
         }
     },
     test: {
-        db: ' mongodb://admin:password@ds040948.mongolab.com:40948/sublease-website',
+        db: 'mongodb://admin:password@ds035603.mongolab.com:35603/heroku_j9hdq1z0',
         root: rootPath,
         notifier: notifier,
         app: {
-            name: 'sublease-website'
+            name: 'heroku_j9hdq1z0'
         }
     },
     production: {}
