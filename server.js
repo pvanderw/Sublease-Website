@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var http = require('http');
 // instantiate the app
 var app = express();
 // set up a static file server that points to the "client" directory
@@ -8,15 +9,21 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 require('./config/mongoose.js');
-require('./config/routes.js')(app);
+var routes = require('./config/routes.js')(app);
+
+app.configure('development', function()
+{
+	app.use(express.errorHandler());
+});
 
 // app.listen(6789, function()
 // {
 // 	console.log('Listening on port 6789');
 // });
 
+
 var port = process.env.PORT || 8000;
-var server = require('http').createServer(app).listen(port);
+var server = http.createServer(app).listen(port);
 
 //  app.listen(app.get('port'), function(){
 // 	console.log("Express server listening on port " + app.get('port'));
