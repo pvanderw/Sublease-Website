@@ -1,14 +1,14 @@
 
-<div ng-controller="usersController">
+<!-- <div ng-controller="usersController"> -->
 	<div ng-include src="'/partials/header.html'"></div>
-</div>
+<!-- </div> -->
 <div ng-controller="subleasesController">
 	<div class="container" style="margin:60px auto;">
 		<div class="col-md-8">
 			<h1>Add a sublease for others to see</h1>
 			<form name="sublease_form" novalidate ng-submit="subleaseForm()">
 				<div class="form-group">
-					<label for="num_rooms">Number of rooms: </label>
+					<label for="num_rooms">Number of bedrooms: </label>
 					<input type="number" name="num_rooms" class="form-control" ng-model="newSublease.num_rooms" min="1" max="10" ng-pattern="/[0-9]/" required>
 					<span style="color:red" ng-show="sublease_form.$submitted && sublease_form.num_rooms.$invalid">
 						<span ng-show="sublease_form.num_rooms.$error.required">Number of rooms is required</span>
@@ -68,6 +68,11 @@
 						<span ng-show="sublease_form.end_date.$error.minlength">End date must be at least 6 characters in length</span>
 						<span ng-show="sublease_form.end_date.$error.maxlength">End date cannot be more than 10 characters in length</span>
 					</span>
+				</div>
+				<div class="form-group">
+					<label for="photo_url">Link to Photo Album: </label><br>
+					<label>Some useful sites for uploading photos: <a href="http://imgur.com/" target="_blank">Imgur</a>, <a href="https://www.flickr.com/" target="_blank">Flickr</a>, <a href="https://www.facebook.com/" target="_blank">Facebook</a>, etc.</label>
+					<input type="text" name="photo_url" class="form-control" ng-model="newSublease.photo_url">
 				</div>
 				<div class="form-group">
 					<label for="description">Description of apartment: </label>

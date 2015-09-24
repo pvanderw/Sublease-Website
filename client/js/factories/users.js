@@ -40,11 +40,10 @@ myApp.factory('usersFactory', function($http)
 
 	factory.addUser = function(info, callback)
 	{
-		console.log("In factory add user");
 		$http.post('/add_user', info).
 			success(function(output)
 			{
-				console.log("Successfully added new user");
+				// console.log("Successfully added new user");
 				//run callback to update list of users
 				callback(output);
 			}).
@@ -59,7 +58,7 @@ myApp.factory('usersFactory', function($http)
 		$http.post('/check_user', info).
 			success(function(output)
 			{
-				console.log("checked user successfully");
+				// console.log("checked user successfully");
 				callback(output);
 			}).
 			error(function()
@@ -73,7 +72,7 @@ myApp.factory('usersFactory', function($http)
 		$http.post('/check_email', info).
 			success(function(output)
 			{
-				console.log("checked email successfully");
+				// console.log("checked email successfully");
 				callback(output);
 			}).
 			error(function()
@@ -87,12 +86,25 @@ myApp.factory('usersFactory', function($http)
 		$http.post('/validate', info).
 			success(function(output)
 			{
-				console.log("Checked user login info successfully");
+				// console.log("Checked user login info successfully");
 				callback(output);
 			}).
 			error(function()
 			{
 				console.log("Error occurred while checking login info");
+			});
+	}
+
+	factory.addSublease = function(info, callback)
+	{
+		$http.post('/add_user_sublease', info).
+			success(function()
+			{
+				callback();
+			}).
+			error(function()
+			{
+				console.log("Error occurred while adding sublease to User");
 			});
 	}
 

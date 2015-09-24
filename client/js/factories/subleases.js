@@ -15,10 +15,10 @@ myApp.factory('subleasesFactory', function($http)
 	factory.addSublease = function(info, callback)
 	{
 		$http.post('/add_sublease', info).
-			success(function()
+			success(function(id)
 			{
-				console.log("Added sublease successfully");
-				callback();
+				// console.log("Added sublease successfully");
+				callback(id);
 			}).
 			error(function()
 			{

@@ -1,44 +1,44 @@
-<div ng-init="isLoggedIn()">
-	<nav class="navbar navbar-inverse navbar-fixed-top" style="padding:3px 0px 7px 0px">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		            <span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-	          	</button>
-				<a class="navbar-brand" href="#/">
-					<!-- <img src="http://i.ytimg.com/vi/-u03jGq3IuI/hqdefault.jpg" height="35" width="40" style="display:inline-block; vertical-align:top;"> -->Lease SC
-				</a>
-			</div>
-			<div class="collapse navbar-collapse" id="navbar">
-				<div ng-if="loggedIn">
-					<ul class="nav navbar-nav">
-						<li><a href="#/subleases">View Subleases</a></li>
-						<li><a href="#/new_sublease">Add a Sublease</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right" style="margin-right:20px;">
-						<li><a href="#/logout" ng-click="logout()">Logout</a></li>
-					</ul>
+<div ng-controller="usersController">
+	<div ng-init="isLoggedIn()">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="padding:3px 0px 7px 0px">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+		          	</button>
+					<a class="navbar-brand" href="#/">Lease SC</a>
 				</div>
-				<div ng-if="!loggedIn">
-					<ul class="nav navbar-nav">
-						<li><a href="#/subleases">View Subleases</a></li>
-						<li><a href="#/register">Register an account to add a sublease</a></li>
-					</ul>
-					<form name="login_form" class="navbar-form navbar-right" novalidate ng-submit="loginUser(login_form)">
-						<span style="color:red" ng-if="login_form.$submitted && login_form.validUser == false">Email or password is incorrect</span>
-						<div class="form-group">
-							<input type="text" name="email" placeholder="Email" class="form-control" ng-model="user.email">
-						</div>
-						<div class="form-group">
-							<input type="password" name="password" placeholder="Password" class="form-control" ng-model="user.password">
-						</div>
-						<button type="submit" class="btn btn-success">Sign in</button>
-					</form>
+				<div class="collapse navbar-collapse" id="navbar">
+					<div ng-if="loggedIn">
+						<ul class="nav navbar-nav">
+							<li><a href="#/subleases">View Subleases</a></li>
+							<li><a href="#/new_sublease">Add a Sublease</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right" style="margin-right:20px;">
+							<li><a href="#/logout" ng-click="logout()">Logout</a></li>
+						</ul>
+					</div>
+					<div ng-if="!loggedIn">
+						<ul class="nav navbar-nav">
+							<li><a href="#/subleases">View Subleases</a></li>
+							<li><a href="#/register">Register an account to add a sublease</a></li>
+						</ul>
+						<form name="login_form" class="navbar-form navbar-right" novalidate ng-submit="loginUser(login_form)">
+							<span style="color:red" ng-if="login_form.$submitted && login_form.validUser == false">Email or password is incorrect</span>
+							<div class="form-group">
+								<input type="text" name="email" placeholder="Email" class="form-control" ng-model="user.email">
+							</div>
+							<div class="form-group">
+								<input type="password" name="password" placeholder="Password" class="form-control" ng-model="user.password">
+							</div>
+							<button type="submit" class="btn btn-success">Sign in</button>
+						</form>
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
+	</div>
 </div>

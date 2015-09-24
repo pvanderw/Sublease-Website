@@ -11,14 +11,14 @@ app.use(bodyParser.json());
 require('./config/mongoose.js');
 var routes = require('./config/routes.js')(app);
 
-// app.listen(6789, function()
-// {
-// 	console.log('Listening on port 6789');
-// });
+app.listen(6789, function()
+{
+	console.log('Listening on port 6789');
+});
 
 
-var port = process.env.PORT || 8000;
-var server = http.createServer(app).listen(port);
+// var port = process.env.PORT || 8000;
+// var server = http.createServer(app).listen(port);
 
 //  app.listen(app.get('port'), function(){
 // 	console.log("Express server listening on port " + app.get('port'));

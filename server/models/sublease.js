@@ -9,6 +9,7 @@ var SubleaseSchema = new mongoose.Schema(
 	price: Number,
 	start_date: {type: Date},
 	end_date: {type: Date},
+	photo_url: String,
 	description: String,
 	created_at: {type: Date, default: Date.now},
 	updated_at: {type: Date, default: Date.now}

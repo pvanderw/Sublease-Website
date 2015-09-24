@@ -1,5 +1,5 @@
 
-myApp.controller('subleasesController', function($scope, $location, $filter, subleasesFactory, sessionFactory)
+myApp.controller('subleasesController', function($scope, $location, $filter, subleasesFactory, usersFactory, sessionFactory)
 {
 	$scope.subleases = [];
 	$scope.filter = {};
@@ -31,11 +31,15 @@ myApp.controller('subleasesController', function($scope, $location, $filter, sub
 	{
 		if ($scope.sublease_form.$valid)
 		{
-			subleasesFactory.addSublease({sublease_info: $scope.newSublease, author_info: $scope.currentUser}, function()
+			subleasesFactory.addSublease({sublease_info: $scope.newSublease, author_info: $scope.currentUser}, function(id)
 			{
-				$scope.getSubleases();
+				//add sublease to user's list of subleases
+				usersFactory.addSublease({user_id: $scope.currentUser._id, sublease_info: $scope.newSublease}, function()
+				{
+					$scope.getSubleases();
+				});
 			});
-			$location.path('/');
+			$location.path('/subleases');
 		}
 	}
 
@@ -83,7 +87,7 @@ myApp.controller('subleasesController', function($scope, $location, $filter, sub
 												'</div>'+
 												'<h1 id="firstHeading" class="firstHeading">' + info.num_rooms + ' bedroom ' + info.num_bathrooms + ' bath</h1>'+
 												'<div id="bodyContent">'+
-													'<ul><li>Price: $' + info.price + '</li>'+
+													'<ul><li>Price Per Month: $' + info.price + '</li>'+
 													'<li>Address: ' + info.address + '</li>'+
 													'<li>Available Starting: ' + $filter('date')(info.start_date, 'MM/dd/yyyy', 'PT') + '</li>'+
 													'<li>Sublease Ending: ' + $filter('date')(info.end_date, 'MM/dd/yyyy', 'PT') + '</li>'+

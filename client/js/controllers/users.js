@@ -4,6 +4,8 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 	$scope.newUser = {};
 	$scope.userInfo = {};
 	$scope.user = {};
+	$scope.loggedIn = false;
+	$scope.currentUser = {};
 
 	//retrieves list of users from users factory
 	$scope.getUsers = function()
@@ -14,12 +16,21 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 		});
 	}
 
+	$scope.getCurrentUser = function()
+	{
+		sessionFactory.getCurrentUser(function(user)
+		{
+			$scope.currentUser = user;
+		});
+	}
+
 	//show user info by ID
 	if ($location.path().indexOf("/users/") > -1)
 	{
 		usersFactory.getUserById($routeParams.id, function(data)
 		{
 			$scope.userInfo = data;
+			console.log($scope.userInfo);
 		});
 	}
 
@@ -35,7 +46,6 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 	{
 		usersFactory.emailExists($scope.newUser, function(exists)
 		{
-			console.log("Exists:", exists);
 			if (exists === false)
 			{
 				callback(false);
@@ -69,7 +79,7 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 
 			if ($scope.registration_form.$valid && $scope.registration_form.email.$error.email_used != true) {
 				// Submit as normal
-				console.log("Form has no errors");
+				// console.log("Form has no errors");
 				$scope.addUser();
 			}
 			else {
@@ -111,9 +121,9 @@ myApp.controller('usersController', function($scope, $location, $routeParams, us
 				usersFactory.getUserByEmail({email: $scope.user.email}, function(userResult)
 				{
 					sessionFactory.setCurrentUser(userResult);
+					$scope.currentUser = userResult;
 				});
 				$scope.loggedIn = true;
-				$location.path('/');
 
 			}
 			else

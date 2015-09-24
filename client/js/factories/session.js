@@ -23,7 +23,7 @@ myApp.factory('sessionFactory', function($http, $window)
 
 	factory.logout = function()
 	{
-		console.log("Logged Off");
+		// console.log("Logged Off");
 		currentUser = {};
 		$window.location.href = '/';
 	}

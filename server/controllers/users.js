@@ -8,7 +8,7 @@ module.exports = (function()
 
 		show: function(req, res)
 		{
-			User.find({}, function(err, results)
+			User.find({}).populate('_subleases').exec(function(err, results)
 			{
 				if (err)
 				{
@@ -16,6 +16,7 @@ module.exports = (function()
 				}
 				else
 				{
+					console.log(results);
 					res.json(results);
 				}
 			});
@@ -23,7 +24,7 @@ module.exports = (function()
 
 		showById: function(req, res)
 		{
-			User.findOne({_id: req.params.id}, function(err, result)
+			User.findOne({_id: req.params.id}).populate('_subleases').exec(function(err, result)
 			{
 				if (err)
 				{
@@ -154,6 +155,21 @@ module.exports = (function()
 							res.json(false);
 						}
 					});
+				}
+			});
+		},
+
+		addSublease: function(req,res)
+		{
+			User.findOne({_id: req.body.user_id}, function(err, currentUser)
+			{
+				if (err)
+				{
+					console.log("Error while adding to user's sublease list");
+				}
+				else
+				{
+					currentUser._subleases.push(req.body.sublease_info._id);
 				}
 			});
 		}

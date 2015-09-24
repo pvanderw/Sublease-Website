@@ -43,6 +43,11 @@ module.exports = function(app)
 		users.validateUser(req,res);
 	});
 
+	app.post('/add_user_sublease', function(req,res)
+	{
+		users.addSublease(req,res);
+	});
+
 	app.get('/subleases', function(req,res)
 	{
 		subleases.show(req,res);

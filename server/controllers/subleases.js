@@ -33,7 +33,8 @@ module.exports = (function()
 					price: req.body.sublease_info.price, 
 					start_date: req.body.sublease_info.start_date, 
 					end_date: req.body.sublease_info.end_date,
-					description: req.body.sublease_info.description
+					description: req.body.sublease_info.description,
+					photo_url: req.body.sublease_info.photo_url
 				});
 
 			new_sublease.save(function(err)
@@ -45,9 +46,8 @@ module.exports = (function()
 				else
 				{
 					console.log("Sublease successfully added to database");
-					res.json(true);
+					res.json(new_sublease._id);
 				}
-
 			});
 		}
 	}
